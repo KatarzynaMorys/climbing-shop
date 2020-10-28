@@ -12,7 +12,20 @@ public class ClimbingShopController {
     }
 
     @GetMapping("/home")
-    public String returnHome() {
-        return "home";
+    public String returnHome() { return "home"; }
+
+    @GetMapping("/womenClothing")
+    public String viewWomenClothing() {
+        return "womenClothing";
+    }
+
+    @GetMapping("/menClothing")
+    public String viewMenClothing() {
+        return "menClothing";
+    }
+
+    @GetMapping("/climbingGear")
+    public String viewClimbingGear() {
+        return "climbingGear";
     }
 }
