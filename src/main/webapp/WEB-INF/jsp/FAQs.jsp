@@ -7,7 +7,7 @@
 <body>
 <%@ include file="header.jsp" %>
 
-<h3>Men</h3>
+<h3>FAQs</h3>
 
 <%@ include file="footer.jsp" %>
 </body>

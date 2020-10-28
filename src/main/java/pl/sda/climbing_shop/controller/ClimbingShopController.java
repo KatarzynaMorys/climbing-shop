@@ -6,13 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ClimbingShopController {
 
-    @GetMapping("/welcome")
-    public String renderWelcomeScreen() {
-        return "climbingShop";
-    }
-
     @GetMapping("/home")
-    public String returnHome() { return "home"; }
+    public String returnHome() {
+        return "home";
+    }
 
     @GetMapping("/womenClothing")
     public String viewWomenClothing() {
@@ -27,5 +24,30 @@ public class ClimbingShopController {
     @GetMapping("/climbingGear")
     public String viewClimbingGear() {
         return "climbingGear";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping("/shoppingBag")
+    public String viewShoppingBag() {
+        return "shoppingBag";
+    }
+
+    @GetMapping("/contact")
+    public String viewContactDetails() {
+        return "contact";
+    }
+
+    @GetMapping("/FAQs")
+    public String viewFAQS() {
+        return "FAQs";
+    }
+
+    @GetMapping("/returns")
+    public String viewReturnPolicy() {
+        return "returns";
     }
 }

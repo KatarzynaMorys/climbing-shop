@@ -6,7 +6,10 @@
 
 <body>
 <%@ include file="header.jsp" %>
+
 <h3>Women</h3>
+
+<%@ include file="footer.jsp" %>
 </body>
 
 </html>
