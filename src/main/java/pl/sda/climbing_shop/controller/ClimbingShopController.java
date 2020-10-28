@@ -10,4 +10,9 @@ public class ClimbingShopController {
     public String renderWelcomeScreen() {
         return "climbingShop";
     }
+
+    @GetMapping("/home")
+    public String returnHome() {
+        return "home";
+    }
 }
