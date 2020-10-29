@@ -12,7 +12,7 @@
 <%@ include file="header.jsp" %>
 
 <div>
-    <img src="https://www.lifehacker.com.au/content/uploads/sites/4/2019/03/rock-climbing.jpg" class="img-fluid">
+    <img src="https://www.liveabout.com/thmb/nxNSPsJEvBOiK3RUZnutkDSoCbQ=/2048x1152/smart/filters:no_upscale()/8586997093_d9da01308f_k-5c576c2ac9e77c00016b367c.jpg" class="img-fluid">
     <div class="position-fixed">
         <div class="row">
             <a class="btn-work btn-light" href="/womenClothing/jackets" role="button">Jackets & Vests</a>
