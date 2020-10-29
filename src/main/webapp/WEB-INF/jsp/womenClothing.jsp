@@ -1,40 +1,11 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 
 <head>
+    <title>Women clothing</title>
+    <link rel="stylesheet" href="css/products_menu.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <style>
-        .position-fixed {
-            position: fixed;
-            width: 100%;
-            min-height: 10rem;
-            top: 75%;
-        }
-        .btn-light {
-            opacity: 0.5;
-        }
-
-        .btn-work {
-            width: 15%;
-            height: 100px;
-            margin: 10px;
-            padding: 0;
-            display: inline-block;
-            line-height: 50px;
-            text-align: center;
-            vertical-align: middle;
-            font-size: 18px;
-        }
-
-        .row {
-            margin: -10px;
-        }
-
-        img {
-            width: 100%;
-            height: auto;
-        }
-
-    </style>
 </head>
 
 <body>
