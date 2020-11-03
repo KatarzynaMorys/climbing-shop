@@ -19,6 +19,7 @@
         <div class="row">
             <a class="btn-work btn-light" href="/climbingGear/shoes" role="button">Climbing shoes</a>
             <a class="btn-work btn-light" href="/climbingGear/carabiners" role="button">Carabiners</a>
+            <a class="btn-work btn-light" href="/climbingGear/quickdraws" role="button">Quickdraws</a>
             <a class="btn-work btn-light" href="/climbingGear/expresses" role="button">Climbing expresses</a>
             <a class="btn-work btn-light" href="/climbingGear/belay_rappel" role="button">Belay/ Rappel</a>
             <a class="btn-work btn-light" href="/climbingGear/ropes" role="button">Climbing ropes</a>

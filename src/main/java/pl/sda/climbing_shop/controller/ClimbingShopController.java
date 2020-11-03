@@ -21,11 +21,6 @@ public class ClimbingShopController {
         return "menClothing";
     }
 
-    @GetMapping("/climbingGear")
-    public String viewClimbingGear() {
-        return "climbingGear";
-    }
-
     @GetMapping("/login")
     public String login() {
         return "login";
