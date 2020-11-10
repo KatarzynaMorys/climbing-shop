@@ -3,6 +3,7 @@ package pl.sda.climbing_shop.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.sda.climbing_shop.order.Order;
 
 import javax.persistence.*;
 import java.util.List;
@@ -33,4 +34,6 @@ public class Product {
     private Price price;
     @OneToMany(mappedBy = "product")
     private List<Review> reviews;
+    @ManyToMany
+    private List<Order> orders;
 }
