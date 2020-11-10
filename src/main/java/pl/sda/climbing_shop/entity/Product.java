@@ -1,6 +1,7 @@
 package pl.sda.climbing_shop.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.sda.climbing_shop.order.Order;
@@ -13,6 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Product {
 
     @Id
