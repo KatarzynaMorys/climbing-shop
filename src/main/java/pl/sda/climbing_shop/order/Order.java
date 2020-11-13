@@ -4,7 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import pl.sda.climbing_shop.customer.Customer;
-import pl.sda.climbing_shop.entity.Product;
+import pl.sda.climbing_shop.product.Product;
 
 import javax.persistence.*;
 import java.time.LocalDate;

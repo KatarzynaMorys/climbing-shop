@@ -1,4 +1,4 @@
-package pl.sda.climbing_shop.formData;
+package pl.sda.climbing_shop.product;
 
 import lombok.Data;
 

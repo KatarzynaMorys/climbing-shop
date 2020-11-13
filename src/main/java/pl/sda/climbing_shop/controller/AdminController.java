@@ -5,15 +5,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.sda.climbing_shop.entity.Brand;
-import pl.sda.climbing_shop.entity.Category;
-import pl.sda.climbing_shop.entity.Price;
-import pl.sda.climbing_shop.entity.Product;
-import pl.sda.climbing_shop.formData.ProductFormData;
-import pl.sda.climbing_shop.repository.BrandRepository;
-import pl.sda.climbing_shop.repository.CategoryRepository;
-import pl.sda.climbing_shop.repository.PriceRepository;
-import pl.sda.climbing_shop.repository.ProductRepository;
+import pl.sda.climbing_shop.brand.Brand;
+import pl.sda.climbing_shop.category.Category;
+import pl.sda.climbing_shop.price.Price;
+import pl.sda.climbing_shop.product.Product;
+import pl.sda.climbing_shop.product.ProductFormData;
+import pl.sda.climbing_shop.brand.BrandRepository;
+import pl.sda.climbing_shop.category.CategoryRepository;
+import pl.sda.climbing_shop.price.PriceRepository;
+import pl.sda.climbing_shop.product.ProductRepository;
 
 @Controller
 @RequiredArgsConstructor

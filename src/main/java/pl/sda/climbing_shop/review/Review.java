@@ -1,8 +1,9 @@
-package pl.sda.climbing_shop.entity;
+package pl.sda.climbing_shop.review;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.sda.climbing_shop.product.Product;
 
 import javax.persistence.*;
 import java.time.LocalDate;

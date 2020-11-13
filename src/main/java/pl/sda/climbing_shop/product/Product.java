@@ -1,10 +1,14 @@
-package pl.sda.climbing_shop.entity;
+package pl.sda.climbing_shop.product;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.sda.climbing_shop.brand.Brand;
+import pl.sda.climbing_shop.category.Category;
+import pl.sda.climbing_shop.review.Review;
 import pl.sda.climbing_shop.order.Order;
+import pl.sda.climbing_shop.price.Price;
 
 import javax.persistence.*;
 import java.util.List;
