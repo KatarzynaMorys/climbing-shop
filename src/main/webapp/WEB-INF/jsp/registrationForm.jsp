@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login</title>
+    <title>Registration</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
@@ -20,25 +20,32 @@
 
 <div class="container">
 
-    <h3>Log in</h3>
-    <h4>Please enter your account details to log in to your user account.</h4>
+    <h3>Create an account</h3>
 
-    <form action="login" method="post">
+    <form action="/register" method="post">
 
+        <div class="form-group">
+            <label for="firstName">First name</label>
+            <input type="text" name="firstName" class="form-control" id="firstName">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last name</label>
+            <input type="text" name='lastName' class="form-control" id="lastName">
+        </div>
         <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" name="username" class="form-control" id="email">
+            <input type="email" name='email' class="form-control" id="email">
         </div>
         <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" class="form-control" id="password">
+            <label for="hashPassword">Password</label>
+            <input type="password" name="hashPassword" class="form-control" id="hashPassword">
         </div>
-        <button type="submit" class="btn btn-light btn-lg btn-block">Log in</button>
+        <button type="submit" class="btn btn-light btn-lg btn-block">Register</button>
 
-</form>
+    </form>
 
-<%@ include file="footer.jsp" %>
+    <%@ include file="footer.jsp" %>
+
+</div>
 
 </body>
-
-</html>

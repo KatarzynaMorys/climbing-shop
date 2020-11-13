@@ -1,7 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Contact</title>
+    <title>Account</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
@@ -14,12 +17,9 @@
             crossorigin="anonymous"></script>
 </head>
 
-<body>
+
 <%@ include file="header.jsp" %>
 
-<h3>Contact details</h3>
+<h3>Hi ${customer.firstName}</h3>
 
 <%@ include file="footer.jsp" %>
-</body>
-
-</html>
