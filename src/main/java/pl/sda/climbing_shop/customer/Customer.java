@@ -14,7 +14,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer customerId;
 
     private String firstName;
 
@@ -25,6 +25,7 @@ public class Customer {
     private String email;
 
     @ManyToOne
+    @JoinColumn(name = "address_id")
     private Address address;
 
     private String hashPassword;
