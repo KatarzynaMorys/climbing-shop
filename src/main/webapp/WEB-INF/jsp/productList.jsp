@@ -12,5 +12,5 @@
         <td>${product.price.basePrice}</td>
         <td>${product.price.discountValue}</td>
         <td>${product.quantity}</td>
-    </tr>
+    </tr><br>
 </c:forEach>

@@ -25,7 +25,9 @@ public class AdminController {
     private final PriceRepository priceRepository;
 
     @GetMapping("/newProduct")
-    public String returnAdminHome() {
+    public String returnAdminHome(Model model) {
+        model.addAttribute("categories", this.categoryRepository.findAll());
+        model.addAttribute("brands", this.brandRepository.findAll());
         return "adminHome";
     }
 
@@ -56,12 +58,18 @@ public class AdminController {
                 .price(price)
                 .build();
 
-        this.priceRepository.save(price);
-        this.categoryRepository.save(category);
-        this.brandRepository.save(brand);
+        if (!hasCategory(category, newProduct)) {
+            this.categoryRepository.save(category);
+            newProduct.setCategory(category);
+        }
 
-        newProduct.setBrand(brand);
-        newProduct.setCategory(category);
+        if (!hasBrand(brand, newProduct)) {
+            this.brandRepository.save(brand);
+            newProduct.setBrand(brand);
+        }
+
+        this.priceRepository.save(price);
+
         newProduct.setPrice(price);
 
         this.productRepository.save(newProduct);
@@ -69,10 +77,33 @@ public class AdminController {
         return "redirect:productList";
     }
 
+    private boolean hasCategory(Category category, Product product) {
+        boolean performSave = false;
+        for (Category tempC : this.categoryRepository.findAll()) {
+            if (!tempC.getCategoryName().equals(category.getCategoryName())) {
+                performSave = true;
+                product.setCategory(tempC);
+                break;
+            }
+        }
+        return performSave;
+    }
+
+    private boolean hasBrand(Brand brand, Product product) {
+        boolean performSave = false;
+        for (Brand tempB : this.brandRepository.findAll()) {
+            if (!tempB.getBrandName().equals(brand.getBrandName())) {
+                performSave = true;
+                product.setBrand(tempB);
+                break;
+            }
+        }
+        return performSave;
+    }
+
     @GetMapping("/productList")
     public String returnProductList(Model model) {
-        Iterable<Product> products = this.productRepository.findAll();
-        model.addAttribute("products", products);
+        model.addAttribute("products", this.productRepository.findAll());
         return "productList";
     }
 }

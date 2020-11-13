@@ -66,4 +66,10 @@
         <addForeignKeyConstraint baseTableName="reviews" baseColumnNames="product_id" constraintName="FK_reviews_products" referencedTableName="products"
                                  referencedColumnNames="product_id"/>
     </changeSet>
+    <changeSet id="8" author="morann">
+        <addUniqueConstraint tableName="categories" columnNames="category_name"/>
+    </changeSet>
+    <changeSet id="9" author="morann">
+        <addUniqueConstraint tableName="brands" columnNames="brand_name"/>
+    </changeSet>
 </databaseChangeLog>
