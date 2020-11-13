@@ -58,12 +58,12 @@ public class AdminController {
                 .price(price)
                 .build();
 
-        if (!hasCategory(category, newProduct)) {
+        if (hasNewCategory(category, newProduct)) {
             this.categoryRepository.save(category);
             newProduct.setCategory(category);
         }
 
-        if (!hasBrand(brand, newProduct)) {
+        if (hasNewBrand(brand, newProduct)) {
             this.brandRepository.save(brand);
             newProduct.setBrand(brand);
         }
@@ -77,11 +77,11 @@ public class AdminController {
         return "redirect:productList";
     }
 
-    private boolean hasCategory(Category category, Product product) {
-        boolean performSave = false;
+    private boolean hasNewCategory(Category category, Product product) {
+        boolean performSave = true;
         for (Category tempC : this.categoryRepository.findAll()) {
-            if (!tempC.getCategoryName().equals(category.getCategoryName())) {
-                performSave = true;
+            if (tempC.getCategoryName().equals(category.getCategoryName())) {
+                performSave = false;
                 product.setCategory(tempC);
                 break;
             }
@@ -89,11 +89,11 @@ public class AdminController {
         return performSave;
     }
 
-    private boolean hasBrand(Brand brand, Product product) {
-        boolean performSave = false;
+    private boolean hasNewBrand(Brand brand, Product product) {
+        boolean performSave = true;
         for (Brand tempB : this.brandRepository.findAll()) {
-            if (!tempB.getBrandName().equals(brand.getBrandName())) {
-                performSave = true;
+            if (tempB.getBrandName().equals(brand.getBrandName())) {
+                performSave = false;
                 product.setBrand(tempB);
                 break;
             }
