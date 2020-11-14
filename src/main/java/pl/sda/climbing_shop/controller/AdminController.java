@@ -54,6 +54,8 @@ public class AdminController {
                 .productType(formData.getProductType())
                 .productColor(formData.getProductColor())
                 .productSize(formData.getProductSize())
+                .productDescription(formData.getProductDescription())
+                .image(formData.getImage())
                 .quantity(formData.getQuantity())
                 .price(price)
                 .build();

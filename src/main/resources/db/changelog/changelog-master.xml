@@ -9,4 +9,5 @@
     <include file="/db/changelog/create-customers/create-customers.xml"/>
     <include file="/db/changelog/create-orders/create-orders.xml"/>
     <include file="/db/changelog/create-products/create-products.xml"/>
+    <include file="/db/changelog/create-orders_products/create-orders_products.xml"/>
 </databaseChangeLog>
