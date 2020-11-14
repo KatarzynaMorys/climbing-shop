@@ -1,9 +1,6 @@
 package pl.sda.climbing_shop.product;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import pl.sda.climbing_shop.brand.Brand;
 import pl.sda.climbing_shop.category.Category;
 import pl.sda.climbing_shop.review.Review;
@@ -29,6 +26,8 @@ public class Product {
     private String productColor;
     private String productSize;
     private Integer quantity;
+    private String productDescription;
+    private String image;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;

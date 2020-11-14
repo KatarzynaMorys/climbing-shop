@@ -13,4 +13,6 @@ public class ProductFormData {
     private Integer discountValue;
     private String productSize;
     private Integer quantity;
+    private String productDescription;
+    private String image;
 }
