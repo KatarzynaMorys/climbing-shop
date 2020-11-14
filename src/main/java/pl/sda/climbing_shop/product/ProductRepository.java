@@ -1,7 +1,10 @@
 package pl.sda.climbing_shop.product;
 
 import org.springframework.data.repository.CrudRepository;
-import pl.sda.climbing_shop.product.Product;
+
+import java.util.List;
 
 public interface ProductRepository extends CrudRepository<Product,Integer> {
+
+    List<Product> findProductsByCategory_CategoryId(int categoryId);
 }
