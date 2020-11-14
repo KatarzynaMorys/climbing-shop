@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="14" author="morann">
+        <createTable tableName="orders_products">
+            <column name="orders_products_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="orders_products_pk"/>
+            </column>
+            <column name="order_id" type="BIGINT"/>
+            <column name="product_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="15" author="morann">
+        <addForeignKeyConstraint baseTableName="orders_products" baseColumnNames="order_id" constraintName="FK_orders_products" referencedTableName="orders"
+                                 referencedColumnNames="order_id"/>
+        <addForeignKeyConstraint baseTableName="orders_products" baseColumnNames="product_id" constraintName="FK_products_orders" referencedTableName="products"
+                                 referencedColumnNames="product_id"/>
+    </changeSet>
+
+</databaseChangeLog>
