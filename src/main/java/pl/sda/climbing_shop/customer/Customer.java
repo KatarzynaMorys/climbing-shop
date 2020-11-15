@@ -2,6 +2,7 @@ package pl.sda.climbing_shop.customer;
 
 import lombok.Data;
 import pl.sda.climbing_shop.address.Address;
+import pl.sda.climbing_shop.role.Role;
 import pl.sda.climbing_shop.order.Order;
 
 import javax.persistence.*;
@@ -33,5 +34,8 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     private List<Order> orders;
 
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
 }

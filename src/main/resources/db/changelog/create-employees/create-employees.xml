@@ -6,36 +6,29 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet id="1" author="kmorys">
-        <createTable tableName="customers">
-            <column name="customer_id" type="BIGINT" autoIncrement="true">
-                <constraints primaryKey="true" primaryKeyName="customers_pk"/>
+    <changeSet id="16" author="kmorys">
+        <createTable tableName="employees">
+            <column name="employee_id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="employees_pk"/>
             </column>
             <column name="first_name" type="VARCHAR(255)"/>
             <column name="last_name" type="VARCHAR(255)"/>
-            <column name="phone" type="VARCHAR(255)"/>
             <column name="email" type="VARCHAR(255)">
                 <constraints unique="true"/>
             </column>
             <column name="hash_password" type="VARCHAR(2048)"/>
-            <column name="address_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet id="10" author="kmorys">
-        <addForeignKeyConstraint baseTableName="customers" baseColumnNames="address_id"
-                                 constraintName="FK_customers_addresses" referencedTableName="addresses"
-                                 referencedColumnNames="address_id"/>
-    </changeSet>
 
-    <changeSet id="18" author="kmorys">
-        <addColumn tableName="customers">
+    <changeSet id="22" author="kmorys">
+        <addColumn tableName="employees">
             <column name="role_id" type="BIGINT"/>
         </addColumn>
     </changeSet>
 
-    <changeSet id="21" author="kmorys">
-        <addForeignKeyConstraint baseTableName="customers" baseColumnNames="role_id"
-                                 constraintName="FK_customers_roles" referencedTableName="roles"
+    <changeSet id="23" author="kmorys">
+        <addForeignKeyConstraint baseTableName="employees" baseColumnNames="role_id"
+                                 constraintName="FK_employees_roles" referencedTableName="roles"
                                  referencedColumnNames="role_id"/>
     </changeSet>
 
