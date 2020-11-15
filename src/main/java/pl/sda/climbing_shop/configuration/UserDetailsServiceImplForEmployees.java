@@ -5,43 +5,42 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import pl.sda.climbing_shop.address.Address;
-import pl.sda.climbing_shop.customer.Customer;
-import pl.sda.climbing_shop.customer.CustomerRepository;
-import pl.sda.climbing_shop.order.Order;
+import pl.sda.climbing_shop.employee.Employee;
+import pl.sda.climbing_shop.employee.EmployeeRepository;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Component
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImplForEmployees implements UserDetailsService {
 
-    private final CustomerRepository customerRepository;
+    private final EmployeeRepository employeeRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Customer> optionalCustomer = this.customerRepository.findByEmail(username);
-        Customer customer = optionalCustomer.orElseThrow(() -> new UsernameNotFoundException("Customer not found"));
+        Optional<Employee> optionalEmployee = this.employeeRepository.findByEmail(username);
+        Employee employee = optionalEmployee.orElseThrow(() -> new UsernameNotFoundException("Employee not found"));
+
         return ClimbingShopUserDetails.builder()
-                .authorities(Collections.emptyList())
-                .username(customer.getEmail())
-                .password(customer.getHashPassword())
+                .authorities(List.of(employee.getRole().getName()).stream()
+                        .map(SimpleGrantedAuthority::new)
+                        .collect(Collectors.toList()))
+                .username(employee.getEmail())
+                .password(employee.getHashPassword())
                 .accountNonExpired(true)
                 .accountNonLocked(true)
                 .credentialsNonExpired(true)
                 .enabled(true)
-                .firstName(customer.getFirstName())
-                .lastName(customer.getLastName())
-                .phone(customer.getPhone())
-                .address(customer.getAddress())
-                .orders(customer.getOrders())
+                .firstName(employee.getFirstName())
+                .lastName(employee.getLastName())
                 .build();
     }
 
@@ -67,10 +66,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         private String lastName;
 
-        private String phone;
-
-        private Address address;
-
-        private List<Order> orders;
     }
 }
