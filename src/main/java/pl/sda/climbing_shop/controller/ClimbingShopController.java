@@ -11,16 +11,6 @@ public class ClimbingShopController {
         return "home";
     }
 
-    @GetMapping("/womenClothing")
-    public String viewWomenClothing() {
-        return "womenClothing";
-    }
-
-    @GetMapping("/menClothing")
-    public String viewMenClothing() {
-        return "menClothing";
-    }
-
     @GetMapping("/login")
     public String login() {
         return "login";
