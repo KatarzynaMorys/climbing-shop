@@ -66,10 +66,18 @@
         <addForeignKeyConstraint baseTableName="reviews" baseColumnNames="product_id" constraintName="FK_reviews_products" referencedTableName="products"
                                  referencedColumnNames="product_id"/>
     </changeSet>
-    <changeSet id="8" author="morann">
+    <changeSet id="12" author="morann">
         <addUniqueConstraint tableName="categories" columnNames="category_name"/>
     </changeSet>
-    <changeSet id="9" author="morann">
+    <changeSet id="13" author="morann">
         <addUniqueConstraint tableName="brands" columnNames="brand_name"/>
+    </changeSet>
+    <changeSet id="20" author="morann">
+        <addColumn tableName="products">
+            <column name="product_description" type="VARCHAR(2000)"/>
+        </addColumn>
+        <addColumn tableName="products">
+            <column name="image" type="VARCHAR(2000)"/>
+        </addColumn>
     </changeSet>
 </databaseChangeLog>

@@ -61,7 +61,7 @@
         </div>
         <div class="form-group">
             <label for="pro_price">Product price</label>
-            <input type="number" class="form-control" id="pro_price" name="basePrice">
+            <input type="number" step=".01" class="form-control" id="pro_price" name="basePrice">
         </div>
         <div class="form-group">
             <label for="pro_discount">Product discount</label>
@@ -74,6 +74,14 @@
         <div class="form-group">
             <label for="pro_quantity">Quantity</label>
             <input type="number" class="form-control" id="pro_quantity" name="quantity">
+        </div>
+        <div class="form-group">
+            <label for="pro_description">Description</label>
+            <input type="text" class="form-control" id="pro_description" name="productDescription">
+        </div>
+        <div class="form-group">
+            <label for="pro_URL">Image URL</label>
+            <input type="text" class="form-control" id="pro_URL" name="image">
         </div>
         <div>
             <input type="submit" value="Register">
