@@ -31,9 +31,10 @@
             <a class="btn-work btn-light" href="/climbingGear/carabiners" role="button">Carabiners</a>
             <a class="btn-work btn-light" href="/climbingGear/quickdraws" role="button">Quickdraws</a>
             <a class="btn-work btn-light" href="/climbingGear/expresses" role="button">Climbing expresses</a>
-            <a class="btn-work btn-light" href="/climbingGear/belay_rappel" role="button">Belay/ Rappel</a>
+            <a class="btn-work btn-light" href="/climbingGear/belay" role="button">Belay/ Rappel</a>
             <a class="btn-work btn-light" href="/climbingGear/ropes" role="button">Climbing ropes</a>
             <a class="btn-work btn-light" href="/climbingGear/helmets" role="button">Helmets</a>
+            <a class="btn-work btn-light" href="/climbingGear/harnesses" role="button">Harnesses</a>
         </div>
     </div>
 </div>
