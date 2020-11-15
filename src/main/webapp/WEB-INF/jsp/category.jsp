@@ -19,6 +19,7 @@
                 </ul>
                 <div class="card-body">
                     <a href="#" class="card-link">Review</a>
+                    <a href="#" class="card-link">Add to the shopping bag</a>
                 </div>
             </div>
         </div>

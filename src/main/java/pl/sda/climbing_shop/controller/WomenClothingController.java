@@ -15,25 +15,24 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/climbingGear")
-public class ClimbingGearController {
+@RequestMapping("/womenClothing")
+public class WomenClothingController {
 
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
 
     @GetMapping
-    public String viewClimbingGear() {
-        return "climbingGear";
+    public String viewWomenClothing() {
+        return "womenClothing";
     }
 
     @GetMapping("/{categoryName}")
-    public String viewClimbingGearCategory(@PathVariable("categoryName") String categoryName, Model model) {
-
-        Category category = this.categoryRepository.findCategoryByCategoryName(categoryName).get();
+    public String viewWomenClothingCategory(@PathVariable("categoryName") String name, Model model) {
+        Category category = this.categoryRepository.findCategoryByCategoryName(name).get();
         model.addAttribute("category", category);
-        List<Product> products = this.productRepository.findProductsByCategory_CategoryName(categoryName);
+        List<Product> products = this.productRepository.findProductsByCategory_CategoryName(name);
         model.addAttribute("products", products);
-        return categoryName;
+        return name;
     }
 
 }
