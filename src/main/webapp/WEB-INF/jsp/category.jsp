@@ -11,6 +11,7 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">${product.productType}</li>
+                    <li class="list-group-item">${product.productSubtype}</li>
                     <li class="list-group-item">${product.productColor}</li>
                     <li class="list-group-item">${product.productSize}</li>
                     <li class="list-group-item">${product.price.basePrice}</li>

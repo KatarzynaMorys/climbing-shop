@@ -56,6 +56,10 @@
             <input type="text" class="form-control" id="pro_type" name="productType">
         </div>
         <div class="form-group">
+            <label for="pro_subtype">Product subtype</label>
+            <input type="text" class="form-control" id="pro_subtype" name="productSubtype">
+        </div>
+        <div class="form-group">
             <label for="pro_color">Product color</label>
             <input type="text" class="form-control" id="pro_color" name="productColor">
         </div>
