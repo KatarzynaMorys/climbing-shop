@@ -52,6 +52,7 @@ public class AdminController {
                 .brand(brand)
                 .productName(formData.getProductName())
                 .productType(formData.getProductType())
+                .productType(formData.getProductSubtype())
                 .productColor(formData.getProductColor())
                 .productSize(formData.getProductSize())
                 .productDescription(formData.getProductDescription())

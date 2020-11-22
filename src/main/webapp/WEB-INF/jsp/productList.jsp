@@ -7,6 +7,7 @@
         <td>${product.brand.brandName}</td>
         <td>${product.productName}</td>
         <td>${product.productType}</td>
+        <td>${product.productSubtype}</td>
         <td>${product.productColor}</td>
         <td>${product.productSize}</td>
         <td>${product.price.basePrice}</td>

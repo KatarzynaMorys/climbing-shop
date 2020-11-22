@@ -80,4 +80,9 @@
             <column name="image" type="VARCHAR(2000)"/>
         </addColumn>
     </changeSet>
+    <changeSet id="24" author="morann">
+        <addColumn tableName="products">
+            <column name="product_subtype" type="VARCHAR(255)"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

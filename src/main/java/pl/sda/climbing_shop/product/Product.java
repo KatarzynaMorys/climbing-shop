@@ -23,6 +23,7 @@ public class Product {
     private Integer productId;
     private String productName;
     private String productType;
+    private String productSubtype;
     private String productColor;
     private String productSize;
     private Integer quantity;

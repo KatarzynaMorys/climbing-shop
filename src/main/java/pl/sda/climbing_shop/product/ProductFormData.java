@@ -8,6 +8,7 @@ public class ProductFormData {
     private String brandName;
     private String productName;
     private String productType;
+    private String productSubtype;
     private String productColor;
     private Double basePrice;
     private Integer discountValue;
