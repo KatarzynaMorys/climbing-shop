@@ -14,6 +14,11 @@
     <div>
         <h3>${category.categoryName}</h3>
     </div>
+
+    <div>
+        <%@ include file="filter.jsp"%>
+    </div>
+
     <div>
         <%@ include file="category.jsp"%>
     </div>

@@ -3,15 +3,13 @@ package pl.sda.climbing_shop.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import pl.sda.climbing_shop.category.Category;
+import org.springframework.web.bind.annotation.*;
 import pl.sda.climbing_shop.category.CategoryRepository;
 import pl.sda.climbing_shop.product.Product;
 import pl.sda.climbing_shop.product.ProductRepository;
 
-import java.util.List;
+import static pl.sda.climbing_shop.controller.ClimbingGearController.filterProducts;
+import static pl.sda.climbing_shop.controller.ClimbingGearController.viewProducts;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,12 +25,21 @@ public class MenClothingController {
     }
 
     @GetMapping("/{categoryName}")
-    public String viewMenClothingCategory(@PathVariable("categoryName") String name, Model model) {
-        Category category = this.categoryRepository.findCategoryByCategoryName(name).get();
-        model.addAttribute("category", category);
-        List<Product> products = this.productRepository.findProductsByCategory_CategoryName(name);
-        model.addAttribute("products", products);
-        return name;
+    public String viewMenClothingCategory(@PathVariable("categoryName") String categoryName, Model model,
+                                          @RequestParam(required = false) String type,
+                                          @RequestParam(required = false) String size,
+                                          @RequestParam(required = false) String color,
+                                          @RequestParam(required = false) String brand) {
+
+        return viewProducts(categoryName, model, type, size, color, brand, this.categoryRepository, this.productRepository);
+    }
+
+    @PostMapping("/{categoryName}")
+    public String filterMenClothingCategory(@PathVariable("categoryName") String categoryName,
+                                            @ModelAttribute("product") Product product,
+                                            Model model) {
+
+        return "redirect:/menClothing/" + filterProducts(categoryName, product, model);
     }
 
 }
