@@ -35,7 +35,9 @@
         </div>
         <button type="submit" class="btn btn-light btn-lg btn-block">Log in</button>
 
-</form>
+    </form>
+
+</div>
 
 <%@ include file="footer.jsp" %>
 
