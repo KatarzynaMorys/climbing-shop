@@ -15,14 +15,23 @@
                     <li class="list-group-item">${product.productSize}</li>
                     <li class="list-group-item">${product.price.basePrice}</li>
                     <li class="list-group-item">${product.price.discountValue}</li>
-                    <li class="list-group-item">${product.quantity}</li>
+                    <li class="list-group-item">${product.quantity} item/s in stock</li>
                 </ul>
                 <div class="card-body">
+                    <form action="/addToShoppingBag/${product.productId}" method="get">
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="number" min="1" max="${product.quantity}" name="quantity" id="quantity"
+                                       class="form-control" placeholder="Quantity">
+                            </div>
+                            <div class="col">
+                                <input type="submit" class="btn btn-light" value="Add to bag">
+                            </div>
+                        </div>
+                    </form>
                     <a href="#" class="card-link">Review</a>
-                    <a href="#" class="card-link">Add to the shopping bag</a>
                 </div>
             </div>
         </div>
-
     </c:forEach>
 </div>

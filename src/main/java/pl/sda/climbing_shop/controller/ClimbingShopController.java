@@ -16,11 +16,6 @@ public class ClimbingShopController {
         return "login";
     }
 
-    @GetMapping("/shoppingBag")
-    public String viewShoppingBag() {
-        return "shoppingBag";
-    }
-
     @GetMapping("/contact")
     public String viewContactDetails() {
         return "contact";
