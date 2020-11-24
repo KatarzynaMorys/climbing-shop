@@ -8,11 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pl.sda.climbing_shop.customer.Customer;
 import pl.sda.climbing_shop.customer.CustomerRegistrationFormData;
 import pl.sda.climbing_shop.customer.CustomerRepository;
-import pl.sda.climbing_shop.role.Role;
 import pl.sda.climbing_shop.role.RoleRepository;
-
-import java.util.Optional;
-
 @RequiredArgsConstructor
 @Controller
 public class CustomerRegistrationController {
@@ -35,8 +31,7 @@ public class CustomerRegistrationController {
         customer.setLastName(formData.getLastName());
         customer.setEmail(formData.getEmail());
         customer.setHashPassword(this.passwordEncoder.encode(formData.getHashPassword()));
-        Optional<Role> optionalRole = this.roleRepository.findById(1);
-        customer.setRole(optionalRole.orElseThrow());
+        customer.setRole(this.roleRepository.findRoleByNameIsLike("ROLE_USER").orElseThrow());
         this.customerRepository.save(customer);
         return "redirect:home";
     }
