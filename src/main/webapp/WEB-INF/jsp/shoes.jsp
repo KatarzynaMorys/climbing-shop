@@ -26,6 +26,8 @@
         <%@ include file="filter.jsp"%>
     </div>
 
+    <br>
+
     <div>
         <%@ include file="category.jsp"%>
     </div>
