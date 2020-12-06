@@ -38,7 +38,7 @@ modelAttribute="product">
             </form:select>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn-work btn-light col-auto">Submit</button>
+            <button type="submit" class="btn btn-light col-auto">Submit</button>
         </div>
     </div>
 </form:form>

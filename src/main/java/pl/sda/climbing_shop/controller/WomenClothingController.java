@@ -5,11 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.climbing_shop.category.CategoryRepository;
+import pl.sda.climbing_shop.customer.CustomerRepository;
 import pl.sda.climbing_shop.product.Product;
 import pl.sda.climbing_shop.product.ProductRepository;
+import pl.sda.climbing_shop.review.Review;
+import pl.sda.climbing_shop.review.ReviewRepository;
 
-import static pl.sda.climbing_shop.controller.ClimbingGearController.filterProducts;
-import static pl.sda.climbing_shop.controller.ClimbingGearController.viewProducts;
+import static pl.sda.climbing_shop.controller.ClimbingGearController.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -18,6 +20,8 @@ public class WomenClothingController {
 
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+    private final ReviewRepository reviewRepository;
+    private final CustomerRepository customerRepository;
 
     @GetMapping
     public String viewWomenClothing() {
@@ -36,10 +40,17 @@ public class WomenClothingController {
 
     @PostMapping("/{categoryName}")
     public String filterWomenClothingCategory(@PathVariable("categoryName") String categoryName,
-                                         @ModelAttribute("product") Product product,
-                                         Model model) {
+                                         @ModelAttribute("product") Product product) {
 
-        return "redirect:/womenClothing/" + filterProducts(categoryName, product, model);
+        return "redirect:/womenClothing/" + filterProducts(categoryName, product);
+    }
+
+    @PostMapping("/{categoryName}/addReview/{productId}")
+    public String addReview(@PathVariable("categoryName") String categoryName,
+                            @PathVariable("productId") Integer productId,
+                            Review review) {
+
+        return "redirect:/womenClothing/" + addReviews(categoryName, productId, review, this.customerRepository, productRepository, this.reviewRepository);
     }
 
 }

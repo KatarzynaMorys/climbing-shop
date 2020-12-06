@@ -1,14 +1,21 @@
 package pl.sda.climbing_shop.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.climbing_shop.category.Category;
 import pl.sda.climbing_shop.category.CategoryRepository;
+import pl.sda.climbing_shop.customer.Customer;
+import pl.sda.climbing_shop.customer.CustomerRepository;
 import pl.sda.climbing_shop.product.Product;
 import pl.sda.climbing_shop.product.ProductRepository;
+import pl.sda.climbing_shop.review.Review;
+import pl.sda.climbing_shop.review.ReviewRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -18,6 +25,8 @@ public class ClimbingGearController {
 
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+    private final ReviewRepository reviewRepository;
+    private final CustomerRepository customerRepository;
 
     @GetMapping
     public String viewClimbingGear() {
@@ -36,17 +45,44 @@ public class ClimbingGearController {
 
     @PostMapping("/{categoryName}")
     public String filterClimbingGearCategory(@PathVariable("categoryName") String categoryName,
-                                             @ModelAttribute("product") Product product,
-                                             Model model) {
+                                             @ModelAttribute("product") Product product) {
 
-        return "redirect:/climbingGear/" + filterProducts(categoryName, product, model);
+        return "redirect:/climbingGear/" + filterProducts(categoryName, product);
     }
 
-    static String filterProducts(@PathVariable("categoryName") String categoryName, @ModelAttribute("product") Product product, Model model) {
-        model.addAttribute("type", product.getProductType());
-        model.addAttribute("size", product.getProductSize());
-        model.addAttribute("color", product.getProductColor());
-        model.addAttribute("brand", product.getBrand().getBrandName());
+    @PostMapping("/{categoryName}/addReview/{productId}")
+    public String addReviews(@PathVariable("categoryName") String categoryName,
+                             @PathVariable("productId") Integer productId,
+                             Review review) {
+
+        return "redirect:/climbingGear/" + addReviews(categoryName, productId, review, this.customerRepository, productRepository, this.reviewRepository);
+    }
+
+    static String addReviews(@PathVariable("categoryName") String categoryName, @PathVariable("productId") Integer productId, Review review,
+                             CustomerRepository customerRepository, ProductRepository productRepository, ReviewRepository reviewRepository) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication.getName().equals("anonymousUser")) {
+            return "redirect:/login";}
+        else {
+        Customer customer = customerRepository
+                .findByEmail(authentication.getName())
+                .orElseThrow();
+
+        Review newReview = Review.builder()
+                .content(review.getContent())
+                .rating(review.getRating())
+                .product(productRepository.findById(productId).get())
+                .createdAt(LocalDate.now())
+                .customer(customer)
+                .build();
+
+        reviewRepository.save(newReview);
+
+        return categoryName;}
+    }
+
+    static String filterProducts(@PathVariable("categoryName") String categoryName, @ModelAttribute("product") Product product) {
 
         return categoryName + "?type=" + product.getProductType() +
                 "&size=" + product.getProductSize() + "&color=" + product.getProductColor() +
