@@ -37,15 +37,16 @@
                     </div>
                     <div class="col-md-4 w-50">
                         <div class="card-body">
-                            <h5 class="card-title">${product.brand.brandName}</h5>
+                            <h5 class="card-title">${product.brandName}</h5>
                             <p class="card-text">${product.productName}</p>
                             <p class="card-text">${product.productType}</p>
                             <p class="card-text">Color ${product.productColor}</p>
                             <p class="card-text">Size ${product.productSize}</p>
-                            <p class="card-text">Price ${product.price.basePrice}</p>
+                            <p class="card-text">Price ${product.basePrice}</p>
                             <c:set var="priceAfterDiscount"
-                                   value="${product.price.basePrice * (100 - product.price.discountValue) / 100}"/>
+                                   value="${product.basePrice * (100 - product.discountValue) / 100}"/>
                             <p class="card-text">After discount <c:out value="${priceAfterDiscount}"/></p>
+                            <p class="card-text">${product.message}</p>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -53,8 +54,9 @@
                         <form action="/update/${product.productId}" method="post">
                             <br>
                             <div>
-                                <input type="number" min="1" name="quantity" id="quantity"
-                                       placeholder="${product.quantity}">
+                                <input type="number" min="1" max="${product.quantityInStore}"
+                                       name="quantity" id="quantity"
+                                       placeholder="${product.quantity}" required>
                             </div>
                             <br>
                             <button type="submit" class="btn btn-light">Update</button>
@@ -83,7 +85,13 @@
             <div class="card-body">
                 <p class="card-text">Total price ${totalPrice}</p>
                 <form action="/checkout" method="get">
-                    <input type="submit" class="btn btn-light" value="Checkout">
+                    <c:if test="${empty sessionScope.shoppingBag}">
+                        <button type="submit" class="btn btn-light" disabled>Checkout</button>
+                    </c:if>
+
+                    <c:if test="${not empty sessionScope.shoppingBag}">
+                        <button type="submit" class="btn btn-light">Checkout</button>
+                    </c:if>
                 </form>
             </div>
         </div>

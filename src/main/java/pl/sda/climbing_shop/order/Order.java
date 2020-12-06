@@ -1,8 +1,6 @@
 package pl.sda.climbing_shop.order;
 
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 import pl.sda.climbing_shop.customer.Customer;
 import pl.sda.climbing_shop.product.Product;
 
@@ -17,17 +15,16 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String orderId;
+    private Integer orderId;
 
     private String orderStatus;
 
-    @CreationTimestamp
     private LocalDate orderDate;
 
-    @UpdateTimestamp
     private LocalDate deliveryDate;
 
     @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @ManyToMany(mappedBy = "orders")
