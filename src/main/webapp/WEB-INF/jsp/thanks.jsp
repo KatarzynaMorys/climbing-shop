@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login</title>
+    <title>Contact</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
@@ -14,33 +14,14 @@
             crossorigin="anonymous"></script>
 </head>
 
-<body>
-
+<br>
 <%@ include file="header.jsp" %>
-
-<div class="container">
-
-    <h3>Log in</h3>
-    <h4>Please enter your account details to log in to your user account.</h4>
-
-    <form action="login" method="post">
-
-        <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email" name="username" class="form-control" id="email" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" class="form-control" id="password" required>
-        </div>
-        <button type="submit" class="btn btn-light btn-lg btn-block">Log in</button>
-
-    </form>
-
-</div>
-
+<br>
+<h3>Thank you for your purchase.</h3>
+<br>
+<h3>Please let us know if we can do anything else to help!</h3>
+<br>
 <%@ include file="footer.jsp" %>
-
 </body>
 
 </html>

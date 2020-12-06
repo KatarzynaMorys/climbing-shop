@@ -26,19 +26,19 @@
 
         <div class="form-group">
             <label for="firstName">First name</label>
-            <input type="text" name="firstName" class="form-control" id="firstName">
+            <input type="text" name="firstName" class="form-control" id="firstName" required>
         </div>
         <div class="form-group">
             <label for="lastName">Last name</label>
-            <input type="text" name='lastName' class="form-control" id="lastName">
+            <input type="text" name='lastName' class="form-control" id="lastName" required>
         </div>
         <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" name='email' class="form-control" id="email">
+            <input type="email" name='email' class="form-control" id="email" required>
         </div>
         <div class="form-group">
             <label for="hashPassword">Password</label>
-            <input type="password" name="hashPassword" class="form-control" id="hashPassword">
+            <input type="password" name="hashPassword" class="form-control" id="hashPassword" required>
         </div>
         <button type="submit" class="btn btn-light btn-lg btn-block">Register</button>
 
