@@ -1,8 +1,10 @@
 package pl.sda.climbing_shop.review;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.sda.climbing_shop.customer.Customer;
 import pl.sda.climbing_shop.product.Product;
 
 import javax.persistence.*;
@@ -13,6 +15,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Review {
 
     @Id
@@ -24,4 +27,7 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 }

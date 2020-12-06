@@ -85,4 +85,9 @@
             <column name="product_subtype" type="VARCHAR(255)"/>
         </addColumn>
     </changeSet>
+    <changeSet id="25" author="morann">
+        <addColumn tableName="reviews">
+            <column name="customer_id" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
