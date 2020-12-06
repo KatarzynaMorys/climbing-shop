@@ -55,16 +55,20 @@ public class ClimbingGearController {
                              @PathVariable("productId") Integer productId,
                              Review review) {
 
-        return "redirect:/climbingGear/" + addReviews(categoryName, productId, review, this.customerRepository, productRepository, this.reviewRepository);
-    }
-
-    static String addReviews(@PathVariable("categoryName") String categoryName, @PathVariable("productId") Integer productId, Review review,
-                             CustomerRepository customerRepository, ProductRepository productRepository, ReviewRepository reviewRepository) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication.getName().equals("anonymousUser")) {
-            return "redirect:/login";}
-        else {
+            return "redirect:/login";
+        } else {
+            return "redirect:/climbingGear/" + addReviews(categoryName, productId, review,
+                    this.customerRepository, productRepository, this.reviewRepository, authentication);
+        }
+    }
+
+    static String addReviews(@PathVariable("categoryName") String categoryName, @PathVariable("productId") Integer productId, Review review,
+                             CustomerRepository customerRepository, ProductRepository productRepository, ReviewRepository reviewRepository,
+                             Authentication authentication) {
+
         Customer customer = customerRepository
                 .findByEmail(authentication.getName())
                 .orElseThrow();
@@ -79,7 +83,7 @@ public class ClimbingGearController {
 
         reviewRepository.save(newReview);
 
-        return categoryName;}
+        return categoryName;
     }
 
     static String filterProducts(@PathVariable("categoryName") String categoryName, @ModelAttribute("product") Product product) {

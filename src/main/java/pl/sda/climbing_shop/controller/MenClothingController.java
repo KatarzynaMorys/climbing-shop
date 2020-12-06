@@ -1,6 +1,8 @@
 package pl.sda.climbing_shop.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -50,7 +52,14 @@ public class MenClothingController {
                             @PathVariable("productId") Integer productId,
                             Review review) {
 
-        return "redirect:/menClothing/" + addReviews(categoryName, productId, review, this.customerRepository, productRepository, this.reviewRepository);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication.getName().equals("anonymousUser")) {
+            return "redirect:/login";
+        } else {
+            return "redirect:/menClothing/" + addReviews(categoryName, productId, review,
+                    this.customerRepository, productRepository, this.reviewRepository, authentication);
+        }
     }
 
 }
