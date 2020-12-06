@@ -1,9 +1,11 @@
 package pl.sda.climbing_shop.product;
 
+import lombok.Builder;
 import lombok.Data;
-
+@Builder
 @Data
 public class ProductFormData {
+    private Integer productId;
     private String categoryName;
     private String brandName;
     private String productName;
@@ -16,4 +18,6 @@ public class ProductFormData {
     private Integer quantity;
     private String productDescription;
     private String image;
+    private Integer quantityInStore;
+    private String message;
 }

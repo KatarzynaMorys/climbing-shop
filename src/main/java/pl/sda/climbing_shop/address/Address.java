@@ -1,14 +1,21 @@
 package pl.sda.climbing_shop.address;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import pl.sda.climbing_shop.customer.Customer;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+
 @Entity
 @Table(name = "addresses")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Address {
 
     @Id
