@@ -23,7 +23,7 @@
                         <div class="form-row">
                             <div class="col">
                                 <input type="number" min="1" max="${product.quantity}" name="quantity" id="quantity"
-                                       class="form-control" placeholder="Quantity">
+                                       class="form-control" placeholder="Quantity" required>
                             </div>
                             <div class="col">
                                 <input type="submit" class="btn btn-light" value="Add to bag">
@@ -35,21 +35,30 @@
                     <div class="list-group" id="rev_list" role="tablist">
                         <a class="list-group-item list-group-item-action list-group-item-secondary d-flex justify-content-between align-items-center"
                            data-toggle="list" href="#review${product.productId}" role="tab">Reviews
-                            <span class="badge badge-secondary badge-pill">${fn:length(product.reviews)}</span></a>
+                            <c:set var="rev_quantity" value="${fn:length(product.reviews)}"/>
+                            <span class="badge badge-secondary badge-pill">${rev_quantity}</span></a>
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane" id="review${product.productId}" role="tabpanel">
+                            <c:set var="total" value="${0}"/>
                             <c:forEach items="${product.reviews}" var="review">
                                 <blockquote class="blockquote">
-                                    <p class="mb-0">${review.content}</p>
+                                    <p class="mb-0">
+                                        <span class="badge badge-pill badge-warning">${review.rating}</span>
+                                            ${review.content}
+                                    </p>
                                     <footer class="blockquote-footer">${review.customer.firstName} <cite
                                             title="date">${review.createdAt}</cite></footer>
                                 </blockquote>
+                                <c:set var="total" value="${total + review.rating}"/>
                             </c:forEach>
+                            <c:if test="${total != 0}">
+                                <h4><span class="badge badge-pill badge-warning">
+                                    Total rating <c:out value="${total/rev_quantity}"/></span></h4>
+                            </c:if>
                         </div>
                     </div>
                 </div>
-
                 <div class="card-body">
                     <div class="list-group" id="add_rev" role="tablist">
                         <a class="list-group-item list-group-item-action list-group-item-secondary d-flex justify-content-between align-items-center"
@@ -61,12 +70,16 @@
                             <form action="${product.category.categoryName}/addReview/${product.productId}"
                                   method="post">
                                 <div><input type="text" name="content" class="form-control"
-                                            placeholder="Your review..."></div>
+                                            placeholder="Your review" required></div>
                                 <br>
                                 <div class="input-group mb-3">
-                                    <input type="number" min="1" max="5" name="rating">
+                                    <input type="number" min="1" max="5" class="form-control" name="rating"
+                                           placeholder="and rating" required>
+                                    <div class="input-group-append">
+                                        <input type="submit" class="btn btn-dark" value="Add">
+                                    </div>
                                 </div>
-                                <input type="submit" class="btn btn-light" value="Add">
+
                             </form>
                         </div>
                     </div>
