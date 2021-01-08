@@ -6,14 +6,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.sda.climbing_shop.category.CategoryRepository;
 import pl.sda.climbing_shop.customer.CustomerRepository;
 import pl.sda.climbing_shop.product.Product;
 import pl.sda.climbing_shop.product.ProductRepository;
 import pl.sda.climbing_shop.review.Review;
 import pl.sda.climbing_shop.review.ReviewRepository;
-
-import static pl.sda.climbing_shop.controller.View.*;
 
 
 @Controller
@@ -22,7 +19,6 @@ import static pl.sda.climbing_shop.controller.View.*;
 public class ClimbingGearController {
 
     private final ProductRepository productRepository;
-    private final CategoryRepository categoryRepository;
     private final ReviewRepository reviewRepository;
     private final CustomerRepository customerRepository;
 
@@ -38,29 +34,28 @@ public class ClimbingGearController {
                                            @RequestParam(required = false) String color,
                                            @RequestParam(required = false) String brand) {
 
-        return viewProducts(categoryName, model, type, size, color, brand, this.categoryRepository, this.productRepository);
+        return View.viewClimbingGear(categoryName, type, size, color, brand, model, this.productRepository);
     }
 
     @PostMapping("/{categoryName}")
     public String filterClimbingGearCategory(@PathVariable("categoryName") String categoryName,
                                              @ModelAttribute("product") Product product) {
 
-        return "redirect:/climbingGear/" + filterProducts(categoryName, product);
+        return "redirect:/climbingGear/" + View.filterClimbingGear(categoryName, product);
     }
 
     @PostMapping("/{categoryName}/addReview/{productId}")
     public String addReview(@PathVariable("categoryName") String categoryName,
-                             @PathVariable("productId") Integer productId,
-                             Review review) {
+                            @PathVariable("productId") Integer productId,
+                            Review review) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication.getName().equals("anonymousUser")) {
             return "redirect:/login";
         } else {
-            return "redirect:/climbingGear/" + addReviews(categoryName, productId, review,
+            return "redirect:/climbingGear/" + View.addReviews(categoryName, productId, review,
                     this.customerRepository, productRepository, this.reviewRepository, authentication);
         }
     }
-
 }
