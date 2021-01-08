@@ -14,6 +14,7 @@ import pl.sda.climbing_shop.review.Review;
 import pl.sda.climbing_shop.review.ReviewRepository;
 
 import static pl.sda.climbing_shop.controller.ClimbingGearController.*;
+import static pl.sda.climbing_shop.controller.View.*;
 
 @Controller
 @RequiredArgsConstructor
