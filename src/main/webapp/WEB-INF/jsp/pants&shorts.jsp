@@ -1,1 +1,1 @@
-<%@ include file="shoes.jsp"%>
+<%@ include file="clothing.jsp"%>

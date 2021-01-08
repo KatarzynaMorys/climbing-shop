@@ -22,8 +22,8 @@
 <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
     <div class="btn-group" role="group" aria-label="First group">
         <a class="btn btn-light btn-lg" href="/home" role="button">Home</a>
-        <a class="btn btn-light btn-lg" href="/womenClothing" role="button">Women</a>
-        <a class="btn btn-light btn-lg" href="/menClothing" role="button">Men</a>
+        <a class="btn btn-light btn-lg" href="/women" role="button">Women</a>
+        <a class="btn btn-light btn-lg" href="/men" role="button">Men</a>
         <a class="btn btn-light btn-lg" href="/climbingGear" role="button">Climbing gear</a>
         <button type="button" class="btn btn-light btn-lg" disabled>
             <c:if test="${not empty username}">

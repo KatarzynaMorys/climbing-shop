@@ -26,11 +26,11 @@
          class="img-fluid">
     <div class="position-fixed">
         <div class="row">
-            <a class="btn-work btn-light" href="/womenClothing/jackets&vests" role="button">Jackets & Vests</a>
-            <a class="btn-work btn-light" href="/womenClothing/pants&shorts" role="button">Pants & Shorts</a>
-            <a class="btn-work btn-light" href="/womenClothing/t-shirts&shirts" role="button">T-Shirts & Shirts</a>
-            <a class="btn-work btn-light" href="/womenClothing/baselayers" role="button">Baselayers</a>
-            <a class="btn-work btn-light" href="/womenClothing/hats&accessories" role="button">Hats & Accessories</a>
+            <a class="btn-work btn-light" href="/women/jackets&vests" role="button">Jackets & Vests</a>
+            <a class="btn-work btn-light" href="/women/pants&shorts" role="button">Pants & Shorts</a>
+            <a class="btn-work btn-light" href="/women/t-shirts&shirts" role="button">T-Shirts & Shirts</a>
+            <a class="btn-work btn-light" href="/women/baselayers" role="button">Baselayers</a>
+            <a class="btn-work btn-light" href="/women/hats&accessories" role="button">Hats & Accessories</a>
         </div>
     </div>
 </div>

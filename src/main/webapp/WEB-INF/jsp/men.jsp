@@ -28,11 +28,11 @@
          class="img-fluid">
     <div class="position-fixed">
         <div class="row">
-            <a class="btn-work btn-light" href="/menClothing/jackets&vests" role="button">Jackets & Vests</a>
-            <a class="btn-work btn-light" href="/menClothing/pants&shorts" role="button">Pants & Shorts</a>
-            <a class="btn-work btn-light" href="/menClothing/t-shirts&shirts" role="button">T-Shirts & Shirts</a>
-            <a class="btn-work btn-light" href="/menClothing/baselayers" role="button">Baselayers</a>
-            <a class="btn-work btn-light" href="/menClothing/hats&accessories" role="button">Hats & Accessories</a>
+            <a class="btn-work btn-light" href="/men/jackets&vests" role="button">Jackets & Vests</a>
+            <a class="btn-work btn-light" href="/men/pants&shorts" role="button">Pants & Shorts</a>
+            <a class="btn-work btn-light" href="/men/t-shirts&shirts" role="button">T-Shirts & Shirts</a>
+            <a class="btn-work btn-light" href="/men/baselayers" role="button">Baselayers</a>
+            <a class="btn-work btn-light" href="/men/hats&accessories" role="button">Hats & Accessories</a>
         </div>
     </div>
 </div>
