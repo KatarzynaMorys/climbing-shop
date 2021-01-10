@@ -7,7 +7,9 @@
     <title>Climbing gear</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/products_menu.css">
+    <style>
+        <%@include file="../css/position.css"%>
+    </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -22,19 +24,20 @@
 <%@ include file="header.jsp" %>
 
 <div>
-    <div>
-        <img src="https://www.theuiaa.org/wp-content/uploads/2019/07/RCFA19-Korea-6.jpg" class="img-fluid">
-    </div>
-    <div class="position-fixed">
-        <div class="row">
-            <a class="btn-work btn-light" href="/climbingGear/shoes" role="button">Climbing shoes</a>
-            <a class="btn-work btn-light" href="/climbingGear/carabiners" role="button">Carabiners</a>
-            <a class="btn-work btn-light" href="/climbingGear/quickdraws" role="button">Quickdraws</a>
-            <a class="btn-work btn-light" href="/climbingGear/expresses" role="button">Climbing expresses</a>
-            <a class="btn-work btn-light" href="/climbingGear/belay" role="button">Belay/ Rappel</a>
-            <a class="btn-work btn-light" href="/climbingGear/ropes" role="button">Climbing ropes</a>
-            <a class="btn-work btn-light" href="/climbingGear/helmets" role="button">Helmets</a>
-            <a class="btn-work btn-light" href="/climbingGear/harnesses" role="button">Harnesses</a>
+    <div class="img-wrapper">
+        <img src="https://www.rei.com/dam/harnois_071516_0544_main_lg.jpg"
+             class="img-fluid">
+
+        <div class="img-overlay">
+            <a class="btn btn-outline-light btn-lg" href="/climbingGear/shoes" role="button">Shoes</a>
+            <a class="btn btn-outline-light btn-lg" href="/climbingGear/harnesses" role="button">Harnesses</a>
+            <a class="btn btn-outline-light btn-lg" href="/climbingGear/belay&rappel" role="button">Belay & Rappel</a>
+            <a class="btn btn-outline-light btn-lg" href="/climbingGear/carabiners" role="button">Carabiners</a>
+            <a class="btn btn-outline-light btn-lg" href="/climbingGear/quickdraws" role="button">Quickdraws</a>
+            <a class="btn btn-outline-light btn-lg" href="/climbingGear/ropes" role="button">Ropes</a>
+            <a class="btn btn-outline-light btn-lg" href="/climbingGear/helmets" role="button">Helmets</a>
+            <a class="btn btn-outline-light btn-lg" href="/climbingGear/chalk&accessories" role="button">Chalk &
+                Accessories</a>
         </div>
     </div>
 </div>
