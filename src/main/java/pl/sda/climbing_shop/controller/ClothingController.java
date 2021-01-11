@@ -12,6 +12,8 @@ import pl.sda.climbing_shop.product.ProductRepository;
 import pl.sda.climbing_shop.review.Review;
 import pl.sda.climbing_shop.review.ReviewRepository;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequiredArgsConstructor
 public class ClothingController {
@@ -27,13 +29,13 @@ public class ClothingController {
 
     @GetMapping("/{gender}/{categoryName}")
     public String viewClothingCategory(@PathVariable("gender") String gender,
-                                       @PathVariable("categoryName") String categoryName, Model model,
+                                       @PathVariable("categoryName") String categoryName, Model model, HttpSession session,
                                        @RequestParam(required = false) String subtype,
                                        @RequestParam(required = false) String size,
                                        @RequestParam(required = false) String color,
                                        @RequestParam(required = false) String brand) {
 
-        return View.viewClothing(gender, categoryName, subtype, size, color, brand, model, this.productRepository);
+        return View.viewClothing(gender, categoryName, subtype, size, color, brand, model, this.productRepository, session);
     }
 
     @PostMapping("/{gender}/{categoryName}")
