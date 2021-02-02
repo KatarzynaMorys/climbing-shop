@@ -11,11 +11,11 @@
                        action="${category.categoryName}"
                        modelAttribute="product">
                 <div>
-                    <c:forEach var="subtype" items="${subtypes}">
-                        <form:radiobutton path="productSubtype" id="subtype_id"
-                                          value="${subtype}"
+                    <c:forEach var="type" items="${types}">
+                        <form:radiobutton path="productType" id="type_id"
+                                          value="${type}"
                                           onclick="this.form.submit()"/>
-                        <label class="form-check-label" for="subtype_id">${subtype}</label><br>
+                        <label class="form-check-label" for="subtype_id">${type}</label><br>
                     </c:forEach>
                 </div>
             </form:form>
@@ -85,6 +85,3 @@
         </form>
     </div>
 </div>
-
-
-

@@ -17,15 +17,15 @@
 <body>
 <%@ include file="header.jsp" %>
 
-<div container>
-    <div>
-        <%@ include file="filter.jsp"%>
-    </div>
+<div>
+    <div class="row">
+        <div class="col-2">
+            <%@ include file="gearFilter.jsp" %>
+        </div>
+        <div class="col-10">
+            <%@ include file="category.jsp" %>
+        </div>
 
-    <br>
-
-    <div>
-        <%@ include file="category.jsp"%>
     </div>
 </div>
 
