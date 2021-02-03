@@ -24,11 +24,11 @@
 <%@ include file="header.jsp" %>
 
 <div>
-    <div class="img-wrapper">
+    <div class="img-fluid img-wrapper">
         <img src="https://www.rei.com/dam/harnois_071516_0544_main_lg.jpg"
              class="img-fluid">
 
-        <div class="img-overlay">
+        <div class="container-fluid img-overlay">
             <a class="btn btn-outline-light btn-lg" href="/climbingGear/shoes" role="button">Shoes</a>
             <a class="btn btn-outline-light btn-lg" href="/climbingGear/harnesses" role="button">Harnesses</a>
             <a class="btn btn-outline-light btn-lg" href="/climbingGear/belay&rappel" role="button">Belay & Rappel</a>
