@@ -15,7 +15,7 @@
                         <form:radiobutton path="productType" id="type_id"
                                           value="${type}"
                                           onclick="this.form.submit()"/>
-                        <label class="form-check-label" for="subtype_id">${type}</label><br>
+                        <label class="form-check-label" for="type_id">${type}</label><br>
                     </c:forEach>
                 </div>
             </form:form>

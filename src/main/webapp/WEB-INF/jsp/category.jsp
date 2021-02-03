@@ -3,7 +3,7 @@
 
 <div class="row">
     <c:forEach var="product" items="${products}">
-        <div class="col-sm-3">
+        <div class="col-xs-6 col-md-3">
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="${product.image}" alt="Card image cap">
                 <div class="card-body">
