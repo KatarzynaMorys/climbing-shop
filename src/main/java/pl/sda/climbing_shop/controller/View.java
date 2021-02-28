@@ -2,12 +2,11 @@ package pl.sda.climbing_shop.controller;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.sda.climbing_shop.brand.Brand;
-import pl.sda.climbing_shop.category.Category;
-import pl.sda.climbing_shop.category.CategoryRepository;
 import pl.sda.climbing_shop.customer.Customer;
 import pl.sda.climbing_shop.customer.CustomerRepository;
 import pl.sda.climbing_shop.product.Product;
@@ -17,119 +16,81 @@ import pl.sda.climbing_shop.review.ReviewRepository;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class View {
 
-    static String viewClimbingGear(@PathVariable("categoryName") String categoryName,
-                                   @RequestParam(required = false) String type,
-                                   @RequestParam(required = false) String size,
-                                   @RequestParam(required = false) String color,
-                                   @RequestParam(required = false) Integer brand,
-                                   ProductRepository productRepository, CategoryRepository categoryRepository,
-                                   Model model, HttpSession session) {
-
-        if (session.getAttribute("categoryName") == null) {
-            session.setAttribute("categoryName", categoryName);
-        }
-
-        if (!session.getAttribute("categoryName").equals(categoryName)) {
-            session.removeAttribute("categoryName");
-            session.removeAttribute("products");
-            return "redirect:/climbingGear/" + categoryName;
-        }
+    static String viewClimbingGear (String categoryName, String type, String size, String color, String brand,
+                                   Model model, ProductRepository productRepository, HttpSession session) {
 
         List<Product> products = productRepository.findProductsByCategory_CategoryName(categoryName);
-        if (session.getAttribute("products") == null) {
-            session.setAttribute("products", products);
-        } else {
-            List<Product> filteredProductsList = (List<Product>) session.getAttribute("products");
 
-            if (type != null) {
-                List<Product> filteredByType = filteredProductsList.stream()
-                        .filter(p -> p.getProductType().equalsIgnoreCase(type))
-                        .collect(Collectors.toList());
-                session.setAttribute("products", filteredByType);
-            }
+        final String filterAttributeName = "filterMap";
 
-            filteredProductsListBy(size, color, brand, session, filteredProductsList);
-        }
+        Map<String, String> oldFilter = (Map) session.getAttribute(filterAttributeName);
 
-        return getClimbingGearModel(categoryName, model, productRepository, categoryRepository);
+        Map<String, String> newFilter = new HashMap<>() {{
+            put("productColor", color);
+            put("productType", type);
+            put("productSize", size);
+            put("brand", brand);
+        }};
+
+        products = getProducts(session, products, filterAttributeName, oldFilter, newFilter);
+
+        return getClimbingGearModel(categoryName, model, productRepository, products);
     }
 
-    static String viewClothing(@PathVariable("gender") String gender,
-                               @PathVariable("categoryName") String categoryName,
-                               @RequestParam(required = false) String subtype,
-                               @RequestParam(required = false) String size,
-                               @RequestParam(required = false) String color,
-                               @RequestParam(required = false) Integer brand,
-                               ProductRepository productRepository, CategoryRepository categoryRepository,
-                               Model model, HttpSession session) {
 
-        if (session.getAttribute("gender") == null) {
-            session.setAttribute("gender", gender);
-        }
-
-        if (session.getAttribute("categoryName") == null) {
-            session.setAttribute("categoryName", categoryName);
-        }
-
-        if (!session.getAttribute("gender").equals(gender) || !session.getAttribute("categoryName").equals(categoryName)) {
-            session.removeAttribute("gender");
-            session.removeAttribute("categoryName");
-            session.removeAttribute("products");
-            return "redirect:/" + gender + "/" + categoryName;
-        }
+    static String viewClothing(String gender, String categoryName, String subtype, String size, String color, String brand,
+                               Model model, ProductRepository productRepository, HttpSession session) {
 
         List<Product> products = productRepository.findProductsByCategory_CategoryNameAndProductType(categoryName, gender);
-        if (session.getAttribute("products") == null) {
-            session.setAttribute("products", products);
-        } else {
-            List<Product> filteredProductsList = (List<Product>) session.getAttribute("products");
 
-            if (subtype != null) {
-                List<Product> filteredBySubtype = filteredProductsList.stream()
-                        .filter(p -> p.getProductSubtype().equalsIgnoreCase(subtype))
-                        .collect(Collectors.toList());
-                session.setAttribute("products", filteredBySubtype);
+        final String filterAttributeName = "filterMap";
+
+        Map<String, String> oldFilter = (Map) session.getAttribute(filterAttributeName);
+
+        Map<String, String> newFilter = new HashMap<>() {{
+            put("productColor", color);
+            put("productSubtype", subtype);
+            put("productSize", size);
+            put("brand", brand);
+        }};
+
+        products = getProducts(session, products, filterAttributeName, oldFilter, newFilter);
+
+        return getClothingModel(gender, categoryName, model, productRepository, products);
+    }
+
+    private static List<Product> getProducts(HttpSession session, List<Product> products, String filterAttributeName, Map<String, String> oldFilter, Map<String, String> newFilter) {
+        for (Map.Entry<String, String> kv : newFilter.entrySet()) {
+            String value = kv.getValue();
+            String attribute = kv.getKey();
+
+            if (value == null && oldFilter != null && oldFilter.get(attribute) != null) {
+                value = oldFilter.get(attribute);
+                newFilter.replace(attribute, value);
             }
 
-            filteredProductsListBy(size, color, brand, session, filteredProductsList);
+            if (value != null) {
+                products = products.stream()
+                        .filter(product -> product.getValue(attribute).equals(kv.getValue()))
+                        .collect(Collectors.toList());
+            }
         }
+        session.setAttribute(filterAttributeName, newFilter);
 
-        return getClothingModel(gender, categoryName, model, productRepository, categoryRepository);
+        return products;
     }
 
-    private static void filteredProductsListBy(@RequestParam(required = false) String size, @RequestParam(required = false) String color, @RequestParam(required = false) Integer brand, HttpSession session, List<Product> filteredProductsList) {
+    private static String getClimbingGearModel(String categoryName, Model model, ProductRepository productRepository, List<Product> products) {
 
-        if (size != null) {
-            List<Product> filteredBySize = filteredProductsList.stream()
-                    .filter(p -> p.getProductSize().equalsIgnoreCase(size))
-                    .collect(Collectors.toList());
-            session.setAttribute("products", filteredBySize);
-        }
-
-        if (color != null) {
-            List<Product> filteredByColor = filteredProductsList.stream()
-                    .filter(p -> p.getProductColor().equalsIgnoreCase(color))
-                    .collect(Collectors.toList());
-            session.setAttribute("products", filteredByColor);
-        }
-
-        if (brand != null) {
-            List<Product> filteredByBrand = filteredProductsList.stream()
-                    .filter(p -> p.getBrand().getBrandId().equals(brand))
-                    .collect(Collectors.toList());
-            session.setAttribute("products", filteredByBrand);
-        }
-    }
-
-    private static String getClimbingGearModel(@PathVariable("categoryName") String categoryName, Model model, ProductRepository productRepository, CategoryRepository categoryRepository) {
-
-        Category category = categoryRepository.findCategoryByCategoryName(categoryName).orElseThrow();
-        model.addAttribute("category", category);
+        model.addAttribute("products", products);
 
         List<String> types = productRepository.findDistinctTypes(categoryName);
         model.addAttribute("types", types);
@@ -148,12 +109,9 @@ public class View {
         return categoryName;
     }
 
-    private static String getClothingModel(@PathVariable("gender") String gender,
-                                           @PathVariable("categoryName") String categoryName,
-                                           Model model, ProductRepository productRepository, CategoryRepository categoryRepository) {
+    private static String getClothingModel(String gender, String categoryName, Model model, ProductRepository productRepository, List<Product> products) {
 
-        Category category = categoryRepository.findCategoryByCategoryName(categoryName).orElseThrow();
-        model.addAttribute("category", category);
+        model.addAttribute("products", products);
 
         List<String> subtypes = productRepository.findDistinctClothingSubtypes(categoryName, gender);
         model.addAttribute("subtypes", subtypes);
@@ -170,28 +128,6 @@ public class View {
         model.addAttribute("product", new Product());
 
         return categoryName;
-    }
-
-    static String checkFilter(@PathVariable("categoryName") String categoryName, @ModelAttribute("product") Product product) {
-
-        if (product.getProductType() != null) {
-            return categoryName + "?type=" + product.getProductType();
-        }
-        if (product.getProductSubtype() != null) {
-            return categoryName + "?subtype=" + product.getProductSubtype();
-        }
-
-        if (product.getProductSize() != null) {
-            return categoryName + "?size=" + product.getProductSize();
-        }
-
-        if (product.getProductColor() != null) {
-            return categoryName + "?color=" + product.getProductColor();
-        }
-
-        if (product.getBrand().getBrandName() != null) {
-            return categoryName + "?brand=" + product.getBrand().getBrandId();
-        } else return categoryName;
     }
 
     static String addReviews(@PathVariable("categoryName") String categoryName, @PathVariable("productId") Integer productId, Review review,

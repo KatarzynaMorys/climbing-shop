@@ -6,15 +6,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.sda.climbing_shop.category.CategoryRepository;
 import pl.sda.climbing_shop.customer.CustomerRepository;
-import pl.sda.climbing_shop.product.Product;
 import pl.sda.climbing_shop.product.ProductRepository;
 import pl.sda.climbing_shop.review.Review;
 import pl.sda.climbing_shop.review.ReviewRepository;
 
 import javax.servlet.http.HttpSession;
-
 
 @Controller
 @RequiredArgsConstructor
@@ -24,7 +21,6 @@ public class ClimbingGearController {
     private final ProductRepository productRepository;
     private final ReviewRepository reviewRepository;
     private final CustomerRepository customerRepository;
-    private final CategoryRepository categoryRepository;
 
     @GetMapping
     public String viewClimbingGear() {
@@ -33,26 +29,20 @@ public class ClimbingGearController {
 
     @GetMapping("/{categoryName}")
     public String viewClimbingGearCategory(@PathVariable("categoryName") String categoryName,
-                                           @RequestParam(required = false) String type,
-                                           @RequestParam(required = false) String size,
-                                           @RequestParam(required = false) String color,
-                                           @RequestParam(required = false) Integer brand,
+                                           @RequestParam(required = false) String productType,
+                                           @RequestParam(required = false) String productSize,
+                                           @RequestParam(required = false) String productColor,
+                                           @RequestParam(required = false) String brand,
                                            Model model, HttpSession session) {
 
-        return View.viewClimbingGear(categoryName, type, size, color, brand, this.productRepository, this.categoryRepository, model, session);
+        return View.viewClimbingGear(categoryName, productType, productSize, productColor, brand, model, this.productRepository, session);
     }
 
     @PostMapping("/{categoryName}")
-    public String filterClimbingGearCategory(@PathVariable("categoryName") String categoryName,
-                                             @ModelAttribute("product") Product product) {
-
-        return "redirect:/climbingGear/" + View.checkFilter(categoryName, product);
-    }
-
-    @PostMapping("/{categoryName}/removeFilters")
     public String removeFilters(@PathVariable("categoryName") String categoryName,
                                 HttpSession session) {
-        session.removeAttribute("products");
+
+        session.removeAttribute("filterMap");
         return "redirect:/climbingGear/" + categoryName;
     }
 
