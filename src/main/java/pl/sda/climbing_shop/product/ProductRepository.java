@@ -35,4 +35,5 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
 
     @Query("select distinct p.brand from Product p where p.category.categoryName = ?1 and p.productType = ?2")
     List<Brand> findDistinctClothingBrands(String category, String type);
+
 }

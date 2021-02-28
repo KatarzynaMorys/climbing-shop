@@ -8,6 +8,7 @@ import pl.sda.climbing_shop.order.Order;
 import pl.sda.climbing_shop.price.Price;
 
 import javax.persistence.*;
+import java.lang.reflect.Field;
 import java.util.List;
 
 @Entity
@@ -43,4 +44,19 @@ public class Product {
     private List<Review> reviews;
     @ManyToMany
     private List<Order> orders;
+
+    @SneakyThrows
+    public Object getValue(String attribute) {
+        Field[] fields = Product.class.getDeclaredFields();
+        for (Field f :
+                fields) {
+            if (f.getName().equals("brand")) {
+                return this.brand.getBrandName();
+            }
+            if(f.getName().equalsIgnoreCase(attribute)) {
+                return f.get(this);
+            }
+        }
+        throw new NoSuchFieldException();
+    }
 }

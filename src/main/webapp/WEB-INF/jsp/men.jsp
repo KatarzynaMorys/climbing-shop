@@ -26,7 +26,7 @@
 <%@ include file="header.jsp" %>
 
 <div class="img-wrapper">
-    <img src="https://vimff.org/wp-content/uploads/2020/01/vimff-2020-best-of-climbing-drew-smith-title-bg.jpg"
+    <img src="https://images.unsplash.com/photo-1583889250027-ed17e70239c7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80"
          class="img-fluid">
 
     <div class="img-overlay">
