@@ -2,10 +2,7 @@ package pl.sda.climbing_shop.controller;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
-import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import pl.sda.climbing_shop.brand.Brand;
 import pl.sda.climbing_shop.customer.Customer;
 import pl.sda.climbing_shop.customer.CustomerRepository;
@@ -16,7 +13,6 @@ import pl.sda.climbing_shop.review.ReviewRepository;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,8 +20,10 @@ import java.util.stream.Collectors;
 
 public class View {
 
-    static String viewClimbingGear (String categoryName, String type, String size, String color, String brand,
+    static String viewClimbingGear(String categoryName, String type, String size, String color, String brand,
                                    Model model, ProductRepository productRepository, HttpSession session) {
+
+        if (hasGearPathVariableChanged(categoryName, session)) return "redirect:/climbingGear/" + categoryName;
 
         List<Product> products = productRepository.findProductsByCategory_CategoryName(categoryName);
 
@@ -45,9 +43,11 @@ public class View {
         return getClimbingGearModel(categoryName, model, productRepository, products);
     }
 
-
     static String viewClothing(String gender, String categoryName, String subtype, String size, String color, String brand,
                                Model model, ProductRepository productRepository, HttpSession session) {
+
+        if (hasClothingPathVariablesChanged(gender, categoryName, session))
+            return "redirect:/" + gender + "/" + categoryName;
 
         List<Product> products = productRepository.findProductsByCategory_CategoryNameAndProductType(categoryName, gender);
 
@@ -67,7 +67,38 @@ public class View {
         return getClothingModel(gender, categoryName, model, productRepository, products);
     }
 
+    private static boolean hasGearPathVariableChanged(String categoryName, HttpSession session) {
+
+        if (session.getAttribute("categoryName") == null) {
+            session.setAttribute("categoryName", categoryName);
+        }
+        if (!session.getAttribute("categoryName").equals(categoryName)) {
+            session.removeAttribute("categoryName");
+            session.removeAttribute("filterMap");
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean hasClothingPathVariablesChanged(String gender, String categoryName, HttpSession session) {
+
+        if (session.getAttribute("gender") == null) {
+            session.setAttribute("gender", gender);
+        }
+        if (session.getAttribute("categoryName") == null) {
+            session.setAttribute("categoryName", categoryName);
+        }
+        if (!session.getAttribute("gender").equals(gender) || !session.getAttribute("categoryName").equals(categoryName)) {
+            session.removeAttribute("gender");
+            session.removeAttribute("categoryName");
+            session.removeAttribute("filterMap");
+            return true;
+        }
+        return false;
+    }
+
     private static List<Product> getProducts(HttpSession session, List<Product> products, String filterAttributeName, Map<String, String> oldFilter, Map<String, String> newFilter) {
+
         for (Map.Entry<String, String> kv : newFilter.entrySet()) {
             String value = kv.getValue();
             String attribute = kv.getKey();
