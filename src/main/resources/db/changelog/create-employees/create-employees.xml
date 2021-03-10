@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="16" author="kmorys">
+        <createTable tableName="employees">
+            <column name="employee_id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="employees_pk"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="email" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="hash_password" type="VARCHAR(2048)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="22" author="kmorys">
+        <addColumn tableName="employees">
+            <column name="role_id" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="23" author="kmorys">
+        <addForeignKeyConstraint baseTableName="employees" baseColumnNames="role_id"
+                                 constraintName="FK_employees_roles" referencedTableName="roles"
+                                 referencedColumnNames="role_id"/>
+    </changeSet>
+
+</databaseChangeLog>

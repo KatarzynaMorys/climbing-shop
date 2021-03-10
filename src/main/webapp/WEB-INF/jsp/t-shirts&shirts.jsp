@@ -1,0 +1,1 @@
+<%@ include file="clothing.jsp"%>
