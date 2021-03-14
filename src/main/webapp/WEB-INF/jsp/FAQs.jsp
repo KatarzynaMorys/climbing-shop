@@ -17,7 +17,9 @@
 <body>
 <%@ include file="header.jsp" %>
 
-<h3>FAQs</h3>
+<div class="container">
+    <h3>FAQs</h3>
+</div>
 
 <%@ include file="footer.jsp" %>
 </body>

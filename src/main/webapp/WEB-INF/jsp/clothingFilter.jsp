@@ -57,7 +57,7 @@
               action="${category.categoryName}">
             <div>
                 <button type="submit" class="btn btn-light col-auto">Remove filters</button>
-            </div>
+            </div><br>
         </form>
     </div>
 </div>
