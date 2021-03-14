@@ -37,6 +37,13 @@
 
     </form>
 
+    <c:if test="${not empty exception}">
+        <div class="alert alert-danger">
+            Check that you have the right email address or password
+        </div>
+        <c:set var="exception" value="" scope="session"/>
+    </c:if>
+
 </div>
 
 <%@ include file="footer.jsp" %>

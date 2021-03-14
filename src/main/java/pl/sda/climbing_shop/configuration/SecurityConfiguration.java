@@ -31,8 +31,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/home", true)
+                .successHandler(new CustomAuthenticationSuccessHandler())
+                .failureHandler(new CustomAuthenticationFailureHandler())
                 .and().logout()
                 .logoutSuccessUrl("/home");
     }
+
 }
