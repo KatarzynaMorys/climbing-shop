@@ -14,13 +14,16 @@
             crossorigin="anonymous"></script>
 </head>
 
-<br>
+<body>
 <%@ include file="header.jsp" %>
-<br>
-<h3>Thank you for your purchase.</h3>
-<br>
-<h3>Please let us know if we can do anything else to help!</h3>
-<br>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Thank you for your purchase.</h5>
+        <p class="card-text">Please let us know if we can do anything else to help!</p>
+    </div>
+</div>
+
 <%@ include file="footer.jsp" %>
 </body>
 

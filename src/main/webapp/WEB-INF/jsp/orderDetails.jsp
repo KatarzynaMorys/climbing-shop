@@ -27,36 +27,34 @@
 <body>
 <%@ include file="header.jsp" %>
 
-<div class="row row-cols-2">
+<div class="row">
 
-    <div class="col mb-4">
+    <div class="col-xs-8 col-md-6">
 
         <div class="card-header">Order</div>
-        <c:forEach var="product" items="${sessionScope.shoppingBag}">
-            <div class="card mb-4">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="${product.image}" class="card-img" alt="...">
-                    </div>
-                    <div class="col-md-4 w-50">
-                        <div class="card-body">
-                            <h5 class="card-title">${product.brandName}</h5>
-                            <p class="card-text">${product.productName}</p>
-                            <p class="card-text">${product.productType}</p>
-                            <p class="card-text">Color ${product.productColor}</p>
-                            <p class="card-text">Size ${product.productSize}</p>
-                            <c:set var="priceAfterDiscount"
-                                   value="${product.basePrice * (100 - product.discountValue) / 100}"/>
-                            <p class="card-text">Price <c:out value="${priceAfterDiscount}"/></p>
-                            <p class="card-text">Quantity ${product.quantity}</p>
-                        </div>
+        <div class="row">
+            <c:forEach var="product" items="${sessionScope.shoppingBag}">
+                <div class="col-xs-8 col-md-6">
+                    <img src="${product.image}" class="card-img" alt="...">
+                </div>
+                <div class="col-xs-8 col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">${product.brandName}</h5>
+                        <p class="card-text">${product.productName}</p>
+                        <p class="card-text">${product.productType}</p>
+                        <p class="card-text">Color ${product.productColor}</p>
+                        <p class="card-text">Size ${product.productSize}</p>
+                        <c:set var="priceAfterDiscount"
+                               value="${product.basePrice * (100 - product.discountValue) / 100}"/>
+                        <p class="card-text">Price <c:out value="${priceAfterDiscount}"/></p>
+                        <p class="card-text">Quantity ${product.quantity}</p>
                     </div>
                 </div>
-            </div>
-        </c:forEach>
+            </c:forEach>
+        </div>
     </div>
 
-    <div class="col mb-4">
+    <div class="col-xs-8 col-md-6">
 
         <div class="card">
             <div class="card-header">Delivery address</div>
@@ -95,7 +93,8 @@
                                placeholder="street" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="streetNumber" class="form-control form-control-sm" id="streetNumber"
+                        <input type="text" name="streetNumber" class="form-control form-control-sm"
+                               id="streetNumber"
                                placeholder="street number" required>
                     </div>
                     <div class="form-group">

@@ -25,16 +25,16 @@
 <body>
 <%@ include file="header.jsp" %>
 
-<div class="img-wrapper">
+<div class="card">
     <img src="https://images.unsplash.com/photo-1583889250027-ed17e70239c7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80"
          class="img-fluid">
 
-    <div class="img-overlay">
-        <a class="btn btn-outline-light btn-lg" href="/men/jackets&vests" role="button">Jackets & Vests</a>
-        <a class="btn btn-outline-light btn-lg" href="/men/pants&shorts" role="button">Pants & Shorts</a>
-        <a class="btn btn-outline-light btn-lg" href="/men/t-shirts&shirts" role="button">T-Shirts & Shirts</a>
-        <a class="btn btn-outline-light btn-lg" href="/men/baselayers" role="button">Baselayers</a>
-        <a class="btn btn-outline-light btn-lg" href="/men/hats&accessories" role="button">Hats & Accessories</a>
+    <div class="card-img-overlay">
+        <a class="btn btn-outline-light" href="/men/jackets&vests" role="button">Jackets & Vests</a>
+        <a class="btn btn-outline-light" href="/men/pants&shorts" role="button">Pants & Shorts</a>
+        <a class="btn btn-outline-light" href="/men/t-shirts&shirts" role="button">T-Shirts & Shirts</a>
+        <a class="btn btn-outline-light" href="/men/baselayers" role="button">Baselayers</a>
+        <a class="btn btn-outline-light" href="/men/hats&accessories" role="button">Hats & Accessories</a>
     </div>
 
 </div>

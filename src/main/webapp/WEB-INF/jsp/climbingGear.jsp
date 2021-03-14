@@ -24,19 +24,19 @@
 <%@ include file="header.jsp" %>
 
 <div>
-    <div class="img-fluid img-wrapper">
+    <div class="card">
         <img src="https://www.rei.com/dam/harnois_071516_0544_main_lg.jpg"
              class="img-fluid">
 
-        <div class="container-fluid img-overlay">
-            <a class="btn btn-outline-light btn-lg" href="/climbingGear/shoes" role="button">Shoes</a>
-            <a class="btn btn-outline-light btn-lg" href="/climbingGear/harnesses" role="button">Harnesses</a>
-            <a class="btn btn-outline-light btn-lg" href="/climbingGear/belay&rappel" role="button">Belay & Rappel</a>
-            <a class="btn btn-outline-light btn-lg" href="/climbingGear/carabiners" role="button">Carabiners</a>
-            <a class="btn btn-outline-light btn-lg" href="/climbingGear/quickdraws" role="button">Quickdraws</a>
-            <a class="btn btn-outline-light btn-lg" href="/climbingGear/ropes" role="button">Ropes</a>
-            <a class="btn btn-outline-light btn-lg" href="/climbingGear/helmets" role="button">Helmets</a>
-            <a class="btn btn-outline-light btn-lg" href="/climbingGear/chalk&accessories" role="button">Chalk &
+        <div class="card-img-overlay">
+            <a class="btn btn-outline-light" href="/climbingGear/shoes" role="button">Shoes</a>
+            <a class="btn btn-outline-light" href="/climbingGear/harnesses" role="button">Harnesses</a>
+            <a class="btn btn-outline-light" href="/climbingGear/belay&rappel" role="button">Belay & Rappel</a>
+            <a class="btn btn-outline-light" href="/climbingGear/carabiners" role="button">Carabiners</a>
+            <a class="btn btn-outline-light" href="/climbingGear/quickdraws" role="button">Quickdraws</a>
+            <a class="btn btn-outline-light" href="/climbingGear/ropes" role="button">Ropes</a>
+            <a class="btn btn-outline-light" href="/climbingGear/helmets" role="button">Helmets</a>
+            <a class="btn btn-outline-light" href="/climbingGear/chalk&accessories" role="button">Chalk &
                 Accessories</a>
         </div>
     </div>

@@ -21,37 +21,33 @@
 
 <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
     <div class="btn-group" role="group" aria-label="First group">
-        <a class="btn btn-light btn-lg" href="/home" role="button">Home</a>
-        <a class="btn btn-light btn-lg" href="/women" role="button">Women</a>
-        <a class="btn btn-light btn-lg" href="/men" role="button">Men</a>
-        <a class="btn btn-light btn-lg" href="/climbingGear" role="button">Climbing gear</a>
-        <button type="button" class="btn btn-light btn-lg" disabled>
-            <c:if test="${not empty username}">
-                <div>
-                    You have been logged in with email <c:out value="${username}"></c:out>
-                </div>
-            </c:if>
-        </button>
+        <a class="btn btn-light" href="/home" role="button">Home</a>
+        <a class="btn btn-light" href="/women" role="button">Women</a>
+        <a class="btn btn-light" href="/men" role="button">Men</a>
+        <a class="btn btn-light" href="/climbingGear" role="button">Climbing gear</a>
     </div>
 
     <div class="btn-group dropleft">
-        <button class="btn btn-light btn-lg" type="button" id="dropdownMenuButton"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person"
-                 fill="currentColor"
-                 xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                      d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-            </svg>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/login">Login</a>
-            <a class="dropdown-item" href="/register">Register</a>
-            <a class="dropdown-item" href="/account">Your account</a>
-            <a class="dropdown-item" href="/logout">Logout</a>
-        </div>
         <div>
-            <a class="btn btn-light btn-lg" href="/shoppingBag" role="button">
+            <button class="btn btn-light" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person"
+                     fill="currentColor"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                          d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                </svg>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/login">Login</a>
+                <a class="dropdown-item" href="/register">Register</a>
+                <a class="dropdown-item" href="/account">Your account</a>
+                <a class="dropdown-item" href="/logout">Logout</a>
+            </div>
+        </div>
+
+        <div>
+            <a class="btn btn-light" href="/shoppingBag" role="button">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bag" fill="currentColor"
                      xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
@@ -59,8 +55,18 @@
                 </svg>
             </a>
         </div>
+        <div>
+            <button type="button" class="btn btn-light" disabled>
+                <c:if test="${not empty username}">
+                    <div>
+                        You have been logged in with email <c:out value="${username}"></c:out>
+                    </div>
+                </c:if>
+            </button>
+        </div>
     </div>
 </div>
 
 </body>
+
 </html>
